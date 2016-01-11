@@ -31,5 +31,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="rating_complete">Thank you! your rating has been saved.
+    </string>
     <string name="title_activity_movie_detail">MovieDetailActivity</string>
 </resources>

@@ -37,6 +37,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -46,6 +47,7 @@ import vn.edu.hcmiu.whatsmovie.MovieDetailActivity;
 import vn.edu.hcmiu.whatsmovie.R;
 import vn.edu.hcmiu.whatsmovie.adapter.SingleMovieAdapter;
 import vn.edu.hcmiu.whatsmovie.client.Client;
+import vn.edu.hcmiu.whatsmovie.configuration.Configuration;
 import vn.edu.hcmiu.whatsmovie.entities.movie;
 
 
@@ -70,11 +72,12 @@ public class moviesFragment extends Fragment {
     private SingleMovieAdapter adapter;
     private ProgressBar progressBar;
     Integer count = 1;
+    private ArrayList<movie> movies;
 
     private OnFragmentInteractionListener mListener;
 
     public moviesFragment() {
-        // Required empty public constructor
+        movies = new ArrayList<movie>();
     }
 
     /**
@@ -125,7 +128,7 @@ public class moviesFragment extends Fragment {
 
 
                 final Intent intent = new Intent(getActivity().getApplicationContext(), MovieDetailActivity.class);
-
+                intent.putExtra("movie", movies.get(position));
                 startActivity(intent);
             }
 
@@ -187,7 +190,7 @@ public class moviesFragment extends Fragment {
                     }
                 }
                 //String url = "http://www.omdbapi.com/?t="+URLEncoder.encode("Life of pi", "UTF-8");
-                String url = "http://192.168.1.3:8989/RecSystem/api/getmovies";
+                String url = Configuration.GET_MOVIES_ADDRESS;
 
                 String json = new Client(url).doGet();
                 //Log.e("JSON", json);
@@ -238,7 +241,7 @@ public class moviesFragment extends Fragment {
 
         @Override
         protected void onPostExecute(JSONArray jsonArray) {
-            ArrayList<movie> movies = map(jsonArray);
+            movies = map(jsonArray);
 
             progressBar.setVisibility(View.GONE);
             adapter = new SingleMovieAdapter(getActivity(), movies);

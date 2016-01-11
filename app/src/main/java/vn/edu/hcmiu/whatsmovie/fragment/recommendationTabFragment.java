@@ -23,6 +23,7 @@ import vn.edu.hcmiu.whatsmovie.MovieDetailActivity;
 import vn.edu.hcmiu.whatsmovie.R;
 import vn.edu.hcmiu.whatsmovie.adapter.SingleMovieAdapter;
 import vn.edu.hcmiu.whatsmovie.client.Client;
+import vn.edu.hcmiu.whatsmovie.configuration.Configuration;
 import vn.edu.hcmiu.whatsmovie.entities.movie;
 
 
@@ -155,7 +156,7 @@ public class recommendationTabFragment extends Fragment {
                     }
                 }
                 //String url = "http://www.omdbapi.com/?t="+URLEncoder.encode("Life of pi", "UTF-8");
-                String url = "http://192.168.1.3:8989/RecSystem/api/getrec";
+                String url = Configuration.GET_REC_ADDRESS;
 
                 String json = new Client(url).doGet();
                 //Log.e("JSON", json);

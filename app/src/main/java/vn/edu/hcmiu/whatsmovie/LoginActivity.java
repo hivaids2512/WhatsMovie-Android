@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.hcmiu.whatsmovie.client.Client;
+import vn.edu.hcmiu.whatsmovie.configuration.Configuration;
 import vn.edu.hcmiu.whatsmovie.security.securityManager;
 
 
@@ -286,7 +287,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             // TODO: attempt authentication against a network service.
 
             try {
-                String url = "http://192.168.1.3:8989/RecSystem/api/authenticate";
+                String url = Configuration.LOGIN_ADDRESS;
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("email", mEmail);
                 jsonObject.put("password", mPassword);

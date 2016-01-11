@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import vn.edu.hcmiu.whatsmovie.R;
 import vn.edu.hcmiu.whatsmovie.entities.movie;
+import vn.edu.hcmiu.whatsmovie.utilities.StringProcess;
 
 /**
  * Created by quyvu-pc on 30/12/2015.
@@ -55,7 +56,7 @@ public class SingleMovieAdapter extends BaseAdapter {
         TextView tv = (TextView) rowView.findViewById(R.id.textView1);
         ImageView iv = (ImageView) rowView.findViewById(R.id.imageView1);
 
-        tv.setText(movies.get(i).getTitle().split(" ")[0] + " " + movies.get(i).getTitle().split(" ")[1] + "...");
+        tv.setText(StringProcess.processTitile(movies.get(i).getTitle()));
         if(!movies.get(i).getPoster().equals("N/A")) {
             Picasso.with(context).load(movies.get(i).getPoster()).into(iv);
         }else {

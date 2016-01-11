@@ -1,9 +1,11 @@
 package vn.edu.hcmiu.whatsmovie.entities;
 
+import java.io.Serializable;
+
 /**
  * Created by quyvu-pc on 30/12/2015.
  */
-public class movie {
+public class movie implements Serializable {
 
     private String Title;
     private String Year;
