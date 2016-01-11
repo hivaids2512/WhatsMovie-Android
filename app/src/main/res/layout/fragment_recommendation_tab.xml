@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.recommendationTabFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/Recmovies"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:numColumns="3"
+
+        android:stretchMode="columnWidth"
+        android:gravity="center">
+    </GridView>
+
+    <ProgressBar
+        android:id="@+id/RecprogressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.ProgressBar.Inverse"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="5dp" />
+
+</RelativeLayout>
