@@ -48,11 +48,12 @@ public class recommendationTabFragment extends Fragment {
     private SingleMovieAdapter adapter;
     private ProgressBar progressBar;
     Integer count = 1;
+    private ArrayList<movie> movies;
 
     private OnFragmentInteractionListener mListener;
 
     public recommendationTabFragment() {
-        // Required empty public constructor
+        movies = new ArrayList<movie>();
     }
 
     /**
@@ -104,7 +105,7 @@ public class recommendationTabFragment extends Fragment {
 
 
                 final Intent intent = new Intent(getActivity().getApplicationContext(), MovieDetailActivity.class);
-
+                intent.putExtra("movie", movies.get(position));
                 startActivity(intent);
             }
 
@@ -207,7 +208,7 @@ public class recommendationTabFragment extends Fragment {
 
         @Override
         protected void onPostExecute(JSONArray jsonArray) {
-            ArrayList<movie> movies = map(jsonArray);
+            movies = map(jsonArray);
 
             progressBar.setVisibility(View.GONE);
             adapter = new SingleMovieAdapter(getActivity(), movies);

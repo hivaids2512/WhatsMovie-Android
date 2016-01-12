@@ -25,6 +25,11 @@ public class MovieDetailActivityFragment extends Fragment {
     private TextView movieTitle;
     private TextView moviePlot;
     private ImageView movieThumb;
+    private TextView movieRelease;
+    private TextView movieGenre;
+    private TextView movieDirector;
+    private TextView movieActor;
+    private TextView movieIMDBRating;
 
     public MovieDetailActivityFragment() {
     }
@@ -39,12 +44,22 @@ public class MovieDetailActivityFragment extends Fragment {
         movieTitle = (TextView) rootView.findViewById(R.id.movie_title);
         moviePlot = (TextView) rootView.findViewById(R.id.movie_plot);
         movieThumb = (ImageView) rootView.findViewById(R.id.movie_thumb);
+        movieRelease = (TextView) rootView.findViewById(R.id.movie_release);
+        movieGenre = (TextView) rootView.findViewById(R.id.movie_genre);
+        movieDirector = (TextView) rootView.findViewById(R.id.movie_director);
+        movieActor = (TextView) rootView.findViewById(R.id.movie_actor);
+        movieIMDBRating = (TextView) rootView.findViewById(R.id.movie_imdbRating);
 
         RatingBar ratingBar = (RatingBar) rootView.findViewById(R.id.ratingBar);
 
         getActivity().setTitle(StringProcess.processTitile(movie.getTitle()));
         movieTitle.setText(movie.getTitle());
         moviePlot.setText(movie.getPlot());
+        movieRelease.setText(movie.getYear());
+        movieGenre.setText(movie.getGenre());
+        movieDirector.setText(movie.getDirector());
+        movieActor.setText(movie.getActor());
+        movieIMDBRating.setText(movie.getIMDBRating());
         if(!movie.getPoster().equals("N/A")) {
             Picasso.with(getActivity()).load(movie.getPoster()).into(movieThumb);
         }else {
