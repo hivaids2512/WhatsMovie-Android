@@ -1,7 +1,9 @@
 package vn.edu.hcmiu.whatsmovie.fragment;
 
 import android.app.Fragment;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,11 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONObject;
+
 import vn.edu.hcmiu.whatsmovie.R;
+import vn.edu.hcmiu.whatsmovie.client.Client;
+import vn.edu.hcmiu.whatsmovie.configuration.Configuration;
 import vn.edu.hcmiu.whatsmovie.entities.movie;
 import vn.edu.hcmiu.whatsmovie.utilities.StringProcess;
 
@@ -30,6 +36,8 @@ public class MovieDetailActivityFragment extends Fragment {
     private TextView movieDirector;
     private TextView movieActor;
     private TextView movieIMDBRating;
+    private String secureToken;
+    private String movieId;
 
     public MovieDetailActivityFragment() {
     }
@@ -40,6 +48,7 @@ public class MovieDetailActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
 
         movie movie = (movie) getActivity().getIntent().getSerializableExtra("movie");
+        secureToken = (String) getActivity().getIntent().getStringExtra("secureToken");
 
         movieTitle = (TextView) rootView.findViewById(R.id.movie_title);
         moviePlot = (TextView) rootView.findViewById(R.id.movie_plot);
@@ -71,6 +80,11 @@ public class MovieDetailActivityFragment extends Fragment {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating,
                                         boolean fromUser) {
+                String params[] = new String[2];
+                params[0] = secureToken;
+                params[1] = String.valueOf(rating);
+
+                new HttpRequestTask().execute(params);
                 Toast toast = Toast.makeText(getActivity(), R.string.rating_complete, Toast.LENGTH_SHORT);
                 toast.show();
                 ratingBar.setIsIndicator(true);
@@ -78,5 +92,29 @@ public class MovieDetailActivityFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    public class HttpRequestTask extends AsyncTask<String[], Void, Void> {
+
+        @Override
+        protected Void doInBackground(String[]... params) {
+            try {
+                String url = Configuration.RATING_ADDRESS;
+                JSONObject jsonObj = new JSONObject();
+                jsonObj.put("secureToken", params[0]);
+                jsonObj.put("rating", params[1]);
+                String json = new Client(url).doPost(jsonObj);
+                //Log.e("JSON", json);
+                //json = Html.fromHtml(json).toString();
+            } catch (Exception e) {
+                Log.e("MainActivity", e.getMessage(), e);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
     }
 }

@@ -73,6 +73,7 @@ public class moviesFragment extends Fragment {
     private ProgressBar progressBar;
     Integer count = 1;
     private ArrayList<movie> movies;
+    private String secureToken;
 
     private OnFragmentInteractionListener mListener;
 
@@ -115,6 +116,7 @@ public class moviesFragment extends Fragment {
         progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
         progressBar.setMax(10);
+        secureToken = getArguments().getString("secureToken");
         //progressBar.setProgress(0);
 
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, numbers);
@@ -129,6 +131,7 @@ public class moviesFragment extends Fragment {
 
                 final Intent intent = new Intent(getActivity().getApplicationContext(), MovieDetailActivity.class);
                 intent.putExtra("movie", movies.get(position));
+                intent.putExtra("secureToken", secureToken);
                 startActivity(intent);
             }
 

@@ -75,9 +75,16 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Intent intentLogout = getIntent();
+        String logout = intentLogout.getStringExtra("logout");
+        if(logout != null){
+            new securityManager(this).removeToken("secureToken");
+        }
+
         String token = new securityManager(this).readToken("secureToken");
         if(!token.equals("N/A")){
             Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("secureToken", token);
             startActivity(intent);
         }
         //new securityManager(this).removeToken("secureToken");

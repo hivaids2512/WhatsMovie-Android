@@ -1,6 +1,7 @@
 package vn.edu.hcmiu.whatsmovie;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
@@ -13,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
@@ -22,7 +25,9 @@ import java.util.ArrayList;
 import vn.edu.hcmiu.whatsmovie.adapter.ViewPagerAdapter;
 import vn.edu.hcmiu.whatsmovie.entities.movie;
 import vn.edu.hcmiu.whatsmovie.fragment.NavigationDrawerFragment;
+import vn.edu.hcmiu.whatsmovie.fragment.moviesFragment;
 import vn.edu.hcmiu.whatsmovie.layout.SlidingTabLayout;
+import vn.edu.hcmiu.whatsmovie.security.securityManager;
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -31,6 +36,7 @@ public class MainActivity extends ActionBarActivity
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
+    public String secureToken;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -61,6 +67,12 @@ public class MainActivity extends ActionBarActivity
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("WhatsMovie");
         getSupportActionBar().setElevation(0);
+        Intent intent = getIntent();
+        secureToken = intent.getStringExtra("secureToken");
+        Bundle bundle = new Bundle();
+        bundle.putString("secureToken", secureToken);
+        moviesFragment fragobj = new moviesFragment();
+        fragobj.setArguments(bundle);
 
 
     }
@@ -69,9 +81,29 @@ public class MainActivity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+
+        switch(position){
+            case 0:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                        .commit();
+
+
+                break;
+            case 1:
+
+                break;
+            case 2:
+
+
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                intent.putExtra("logout", "logout");
+                startActivity(intent);
+                break;
+
+
+        }
+
     }
 
     public void onSectionAttached(int number) {
@@ -94,6 +126,7 @@ public class MainActivity extends ActionBarActivity
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
+
 
     /**
      * A placeholder fragment containing a simple view.
