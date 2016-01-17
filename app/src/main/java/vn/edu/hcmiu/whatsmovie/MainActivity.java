@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
@@ -69,10 +70,8 @@ public class MainActivity extends ActionBarActivity
         getSupportActionBar().setElevation(0);
         Intent intent = getIntent();
         secureToken = intent.getStringExtra("secureToken");
-        Bundle bundle = new Bundle();
-        bundle.putString("secureToken", secureToken);
-        moviesFragment fragobj = new moviesFragment();
-        fragobj.setArguments(bundle);
+        new securityManager(this).writeToken("secureToken", secureToken);
+
 
 
     }
@@ -84,6 +83,13 @@ public class MainActivity extends ActionBarActivity
 
         switch(position){
             case 0:
+                moviesFragment fragobj = new moviesFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("secureToken", secureToken);
+
+                fragobj.setArguments(bundle);
+
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                         .commit();

@@ -2,9 +2,11 @@ package vn.edu.hcmiu.whatsmovie.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.util.Log;
@@ -43,12 +45,15 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import vn.edu.hcmiu.whatsmovie.LoginActivity;
+import vn.edu.hcmiu.whatsmovie.MainActivity;
 import vn.edu.hcmiu.whatsmovie.MovieDetailActivity;
 import vn.edu.hcmiu.whatsmovie.R;
 import vn.edu.hcmiu.whatsmovie.adapter.SingleMovieAdapter;
 import vn.edu.hcmiu.whatsmovie.client.Client;
 import vn.edu.hcmiu.whatsmovie.configuration.Configuration;
 import vn.edu.hcmiu.whatsmovie.entities.movie;
+import vn.edu.hcmiu.whatsmovie.security.securityManager;
 
 
 /**
@@ -105,6 +110,8 @@ public class moviesFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            secureToken = getArguments().getString("secureToken");
+
         }
     }
 
@@ -116,7 +123,7 @@ public class moviesFragment extends Fragment {
         progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
         progressBar.setMax(10);
-        secureToken = getArguments().getString("secureToken");
+        //secureToken = getArguments().getString("secureToken");
         //progressBar.setProgress(0);
 
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, numbers);
@@ -131,6 +138,8 @@ public class moviesFragment extends Fragment {
 
                 final Intent intent = new Intent(getActivity().getApplicationContext(), MovieDetailActivity.class);
                 intent.putExtra("movie", movies.get(position));
+
+                secureToken = new securityManager(getActivity()).readToken("secureToken");
                 intent.putExtra("secureToken", secureToken);
                 startActivity(intent);
             }
@@ -225,6 +234,7 @@ public class moviesFragment extends Fragment {
                 for(int i=0; i< jsonArray.length(); i++){
                     JSONObject jsonObj = jsonArray.getJSONObject(i);
                     movie movie = new movie();
+                    movie.setId(jsonObj.getString("Id"));
                     movie.setTitle(jsonObj.getString("Title"));
                     movie.setPoster(jsonObj.getString("Poster"));
                     movie.setActor(jsonObj.getString("Actor"));

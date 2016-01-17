@@ -189,6 +189,7 @@ public class recommendationTabFragment extends Fragment {
                 for(int i=0; i< jsonArray.length(); i++){
                     JSONObject jsonObj = jsonArray.getJSONObject(i);
                     movie movie = new movie();
+                    movie.setId(jsonObj.getString("Id"));
                     movie.setTitle(jsonObj.getString("Title"));
                     movie.setPoster(jsonObj.getString("Poster"));
                     movie.setActor(jsonObj.getString("Actor"));

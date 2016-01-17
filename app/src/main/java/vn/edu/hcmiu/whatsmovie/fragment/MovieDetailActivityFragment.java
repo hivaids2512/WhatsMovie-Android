@@ -47,7 +47,7 @@ public class MovieDetailActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
 
-        movie movie = (movie) getActivity().getIntent().getSerializableExtra("movie");
+        final movie movie = (movie) getActivity().getIntent().getSerializableExtra("movie");
         secureToken = (String) getActivity().getIntent().getStringExtra("secureToken");
 
         movieTitle = (TextView) rootView.findViewById(R.id.movie_title);
@@ -80,9 +80,10 @@ public class MovieDetailActivityFragment extends Fragment {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating,
                                         boolean fromUser) {
-                String params[] = new String[2];
+                String params[] = new String[3];
                 params[0] = secureToken;
                 params[1] = String.valueOf(rating);
+                params[2] = movie.getId();
 
                 new HttpRequestTask().execute(params);
                 Toast toast = Toast.makeText(getActivity(), R.string.rating_complete, Toast.LENGTH_SHORT);
@@ -99,12 +100,18 @@ public class MovieDetailActivityFragment extends Fragment {
         @Override
         protected Void doInBackground(String[]... params) {
             try {
+
+                String paramsToPass[] = params[0];
                 String url = Configuration.RATING_ADDRESS;
                 JSONObject jsonObj = new JSONObject();
-                jsonObj.put("secureToken", params[0]);
-                jsonObj.put("rating", params[1]);
+
+                jsonObj.put("secureToken", paramsToPass[0]);
+                jsonObj.put("rating", paramsToPass[1]);
+                jsonObj.put("movieId", paramsToPass[2] );
                 String json = new Client(url).doPost(jsonObj);
-                //Log.e("JSON", json);
+                Log.e("JSON", String.valueOf(paramsToPass[0]));
+                Log.e("JSON1", String.valueOf(paramsToPass[1]));
+                Log.e("JSON12", String.valueOf(paramsToPass[2]));
                 //json = Html.fromHtml(json).toString();
             } catch (Exception e) {
                 Log.e("MainActivity", e.getMessage(), e);
