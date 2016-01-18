@@ -44,12 +44,6 @@ public class MainActivity extends ActionBarActivity
      */
 
     private CharSequence mTitle;
-    static final String[] numbers = new String[] {
-            "A", "B", "C", "D", "E",
-            "F", "G", "H", "I", "J",
-            "K", "L", "M", "N", "O",
-            "P", "Q", "R", "S", "T",
-            "U", "V", "W", "X", "Y", "Z"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
