@@ -15,9 +15,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-/**
- * Created by quyvu-pc on 07/01/2016.
- */
 public class Client {
 
     public String url;

@@ -36,6 +36,9 @@ public class MovieDetailActivityFragment extends Fragment {
     private TextView movieDirector;
     private TextView movieActor;
     private TextView movieIMDBRating;
+    private TextView runtime;
+    private TextView language;
+    private TextView awards;
     private String secureToken;
     private String movieId;
 
@@ -58,17 +61,24 @@ public class MovieDetailActivityFragment extends Fragment {
         movieDirector = (TextView) rootView.findViewById(R.id.movie_director);
         movieActor = (TextView) rootView.findViewById(R.id.movie_actor);
         movieIMDBRating = (TextView) rootView.findViewById(R.id.movie_imdbRating);
+        runtime = (TextView) rootView.findViewById(R.id.movie_runtime);
+        language = (TextView) rootView.findViewById(R.id.movie_language);
+        awards = (TextView) rootView.findViewById(R.id.movie_awards);
+
 
         RatingBar ratingBar = (RatingBar) rootView.findViewById(R.id.ratingBar);
 
         getActivity().setTitle(StringProcess.processTitile(movie.getTitle()));
         movieTitle.setText(movie.getTitle());
+        runtime.setText(movie.getRuntime());
+        awards.setText(movie.getAwards());
+        language.setText(movie.getLanguage());
         moviePlot.setText(movie.getPlot());
         movieRelease.setText(movie.getYear());
         movieGenre.setText(movie.getGenre());
         movieDirector.setText(movie.getDirector());
-        movieActor.setText(movie.getActor());
-        movieIMDBRating.setText(movie.getIMDBRating());
+        movieActor.setText(movie.getActors());
+        movieIMDBRating.setText(movie.getImdbRating()+" over "+ movie.getImdbVotes() + " votes");
         if(!movie.getPoster().equals("N/A")) {
             Picasso.with(getActivity()).load(movie.getPoster()).into(movieThumb);
         }else {

@@ -236,6 +236,27 @@ public class moviesFragment extends Fragment {
                     movie movie = new movie();
                     movie.setId(jsonObj.getString("Id"));
                     movie.setTitle(jsonObj.getString("Title"));
+                    movie.setYear(jsonObj.getString("Year"));
+                    movie.setRated(jsonObj.getString("Rated"));
+                    movie.setReleased(jsonObj.getString("Released"));
+                    movie.setRuntime(jsonObj.getString("Runtime"));
+                    movie.setGenre(jsonObj.getString("Genre"));
+                    movie.setDirector(jsonObj.getString("Director"));
+                    movie.setWriter(jsonObj.getString("Writer"));
+                    movie.setActors(jsonObj.getString("Actors"));
+                    movie.setPlot(jsonObj.getString("Plot"));
+                    movie.setLanguage(jsonObj.getString("Language"));
+                    movie.setCountry(jsonObj.getString("Country"));
+                    movie.setAwards(jsonObj.getString("Awards"));
+                    movie.setPoster(jsonObj.getString("Poster"));
+                    movie.setMetascore(jsonObj.getString("Metascore"));
+                    movie.setImdbRating(jsonObj.getString("imdbRating"));
+                    movie.setImdbVotes(jsonObj.getString("imdbVotes"));
+                    movie.setImdbID(jsonObj.getString("imdbID"));
+                    movie.setType(jsonObj.getString("Type"));
+                    /*
+                    movie.setId(jsonObj.getString("Id"));
+                    movie.setTitle(jsonObj.getString("Title"));
                     movie.setPoster(jsonObj.getString("Poster"));
                     movie.setActor(jsonObj.getString("Actor"));
                     movie.setDirector(jsonObj.getString("Director"));
@@ -243,6 +264,7 @@ public class moviesFragment extends Fragment {
                     movie.setIMDBRating(jsonObj.getString("IMDBRating"));
                     movie.setPlot(jsonObj.getString("Plot"));
                     movie.setYear(jsonObj.getString("Year"));
+                    */
                     movies.add(movie);
                 }
 

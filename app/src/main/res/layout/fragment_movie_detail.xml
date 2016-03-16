@@ -26,7 +26,7 @@
         android:layout_width="100dp"
         android:layout_height="150dp"
         android:scaleType="centerCrop"
-        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="10dp"
         android:src="@drawable/toy" />
 
     <TextView android:id="@+id/movie_title"
@@ -53,6 +53,7 @@
         android:stepSize="1.0"
         android:rating="2.0"
         android:layout_below="@+id/movie_plot"
+        android:layout_toRightOf="@id/movie_thumb"
         android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
@@ -60,6 +61,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:background="#37474f"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="10dp"
+            android:text="IMDB Rating"
+            android:textColor="#ffffff"
+            />
+        <TextView android:id="@+id/movie_imdbRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:background="#DDDDDD"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="10dp"
+
+            />
 
         <TextView
             android:layout_width="match_parent"
@@ -94,10 +119,82 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:padding="10dp"
+            android:text="Runtime"
+            android:textColor="#ffffff"
+            />
+        <TextView android:id="@+id/movie_runtime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:background="#DDDDDD"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="10dp"
+
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:background="#37474f"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="10dp"
+            android:text="Language"
+            android:textColor="#ffffff"
+            />
+        <TextView android:id="@+id/movie_language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:background="#DDDDDD"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="10dp"
+
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:background="#37474f"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="10dp"
             android:text="Genre"
             android:textColor="#ffffff"
             />
         <TextView android:id="@+id/movie_genre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:background="#DDDDDD"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="10dp"
+
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:background="#37474f"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="10dp"
+            android:text="Awards"
+            android:textColor="#ffffff"
+            />
+        <TextView android:id="@+id/movie_awards"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -157,29 +254,7 @@
 
             />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:background="#37474f"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:padding="10dp"
-            android:text="IMDB Rating"
-            android:textColor="#ffffff"
-            />
-        <TextView android:id="@+id/movie_imdbRating"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:background="#DDDDDD"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:padding="10dp"
 
-            />
 
     </LinearLayout>
 
